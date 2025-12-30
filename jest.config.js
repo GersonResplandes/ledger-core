@@ -8,4 +8,5 @@ module.exports = {
   transform: {
     ...tsJestTransformCfg,
   },
+  modulePathIgnorePatterns: ["<rootDir>/dist/", "<rootDir>/node_modules/"],
 };

@@ -37,9 +37,9 @@ async function bootstrap() {
                         type: 'http',
                         scheme: 'bearer',
                         bearerFormat: 'JWT',
-                    }
-                }
-            }
+                    },
+                },
+            },
         },
     });
 
@@ -53,9 +53,12 @@ async function bootstrap() {
 
     // 2. Register Routes
     // Note: TransactionController now has a method registerRoutes, we need to wrap it or use register
-    await app.register(async (instance) => {
-        await transactionController.registerRoutes(instance);
-    }, { prefix: '/transactions' });
+    await app.register(
+        async (instance) => {
+            await transactionController.registerRoutes(instance);
+        },
+        { prefix: '/transactions' }
+    );
 
     await app.register(userRoutes, { prefix: '/users' });
 

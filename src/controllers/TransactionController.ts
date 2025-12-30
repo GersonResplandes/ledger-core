@@ -1,8 +1,8 @@
-import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
+import { FastifyInstance } from 'fastify';
 import { z } from 'zod';
 import { ZodTypeProvider } from 'fastify-type-provider-zod';
 import { LedgerService } from '../services/LedgerService';
-import { AppError, InsufficientFundsError, InvalidTransactionError, UserNotFoundError } from '../errors/AppErrors';
+import { AppError } from '../errors/AppErrors';
 
 // Extend FastifyRequest to include user - simulating AuthGuard
 declare module 'fastify' {
@@ -14,13 +14,13 @@ declare module 'fastify' {
 }
 
 export class TransactionController {
-    constructor(private ledgerService: LedgerService) { }
+    constructor(private ledgerService: LedgerService) {}
 
     async registerRoutes(app: FastifyInstance) {
         const server = app.withTypeProvider<ZodTypeProvider>();
 
         // Middleware Simulado de Autenticação (Para demonstração)
-        server.addHook('preHandler', async (req) => {
+        server.addHook('preHandler', async (_req) => {
             // MOCK: Assumindo que o usuário está logado via JWT
         });
 

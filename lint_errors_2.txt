@@ -1,0 +1,12 @@
+
+> wallet-core@1.0.0 lint
+> eslint "src/**/*.ts"
+
+
+C:\Users\respl\Documents\projetos proficionais\ledger-core\src\controllers\TransactionController.ts
+   5:9   error  Replace `⏎····AppError,⏎` with `·AppError·`  prettier/prettier
+  19:56  error  Delete `·`                                   prettier/prettier
+
+✖ 2 problems (2 errors, 0 warnings)
+  2 errors and 0 warnings potentially fixable with the `--fix` option.
+

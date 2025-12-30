@@ -9,7 +9,6 @@
     "start": "node dist/server.js",
     "db:migrate": "tsx src/db/migrate.ts",
     "test": "jest --detectOpenHandles --verbose",
-    "test:watch": "jest --watch",
     "lint": "eslint \"src/**/*.ts\"",
     "lint:fix": "eslint \"src/**/*.ts\" --fix",
     "format": "prettier --write \"src/**/*.{ts,json,md}\""

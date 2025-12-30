@@ -5,7 +5,7 @@ import {
     ConflictError,
     InsufficientFundsError,
     InvalidTransactionError,
-    UserNotFoundError
+    UserNotFoundError,
 } from '../errors/AppErrors';
 
 export class LedgerService {
@@ -47,7 +47,8 @@ export class LedgerService {
 
     async transfer(data: { payer_id: string; payee_id: string; amount: number }) {
         if (data.amount <= 0) throw new InvalidTransactionError('Amount must be positive');
-        if (data.payer_id === data.payee_id) throw new InvalidTransactionError('Cannot transfer to self');
+        if (data.payer_id === data.payee_id)
+            throw new InvalidTransactionError('Cannot transfer to self');
 
         return await db.transaction().execute(async (trx) => {
             const firstLockId = data.payer_id < data.payee_id ? data.payer_id : data.payee_id;

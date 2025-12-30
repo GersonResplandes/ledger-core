@@ -1,0 +1,15 @@
+
+> wallet-core@1.0.0 lint
+> eslint "src/**/*.ts"
+
+
+C:\Users\respl\Documents\projetos proficionais\ledger-core\src\controllers\TransactionController.ts
+   1:27  warning  'FastifyRequest' is defined but never used                             @typescript-eslint/no-unused-vars
+   1:43  warning  'FastifyReply' is defined but never used                               @typescript-eslint/no-unused-vars
+   7:5   warning  'InsufficientFundsError' is defined but never used                     @typescript-eslint/no-unused-vars
+   8:5   warning  'InvalidTransactionError' is defined but never used                    @typescript-eslint/no-unused-vars
+   9:5   warning  'UserNotFoundError' is defined but never used                          @typescript-eslint/no-unused-vars
+  28:45  warning  'req' is defined but never used. Allowed unused args must match /^_/u  @typescript-eslint/no-unused-vars
+
+✖ 6 problems (0 errors, 6 warnings)
+
