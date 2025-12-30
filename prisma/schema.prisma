@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enums deixam os estados explícitos e restritos
+enum WebhookStatus {
+  PENDING
+  PROCESSED
+  FAILED
+}
+
+enum AuditAction {
+  RECEIVED
+  IGNORED
+  PROCESSED
+  FAILED
+}
+
+model WebhookEvent {
+  id          String        @id @default(uuid())
+  eventId     String        @unique
+  customerId  String
+  eventType   String
+  payload     Json
+  status      WebhookStatus // Uso do Enum
+  processedAt DateTime?
+  createdAt   DateTime      @default(now())
+
+  @@index([customerId])
+  @@index([status])
+}
+
+model AuditLog {
+  id         String      @id @default(uuid())
+  eventId    String
+  customerId String
+  action     AuditAction // Uso do Enum
+  metadata   Json?
+  timestamp  DateTime    @default(now())
+
+
+  @@index([eventId])
+  @@index([customerId])
+}
+
+// --- CORE DOMAIN MODELS (Mapped from Kysely) ---
+
+model User {
+  id        String   @id @default(uuid())
+  fullName  String   @map("full_name")
+  email     String   @unique
+  cpf       String   @unique
+  balance   Int      @default(0) // Em centavos
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  transactionsPaid     Transaction[] @relation("payer")
+  transactionsReceived Transaction[] @relation("payee")
+
+  @@map("users")
+}
+
+model Transaction {
+  id        String   @id @default(uuid())
+  payerId   String   @map("payer_id")
+  payeeId   String   @map("payee_id")
+  amount    Int
+  type      String   // 'DEPOSIT' | 'TRANSFER' | 'REVERSAL'
+  createdAt DateTime @default(now()) @map("created_at")
+
+  // Relations
+  payer User @relation("payer", fields: [payerId], references: [id])
+  payee User @relation("payee", fields: [payeeId], references: [id])
+
+  @@index([payerId], map: "idx_transactions_payer")
+  @@index([payeeId], map: "idx_transactions_payee")
+  @@map("transactions")
+}
