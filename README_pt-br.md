@@ -1,4 +1,5 @@
 # Ledger Core
+![CI Status](https://github.com/GersonResplandes/ledger-core/actions/workflows/ci.yml/badge.svg)
 
 **[🇺🇸 Read in English](README.md)**
 
@@ -78,8 +79,7 @@ Os locks são adquiridos em uma ordem determinística (por ID), prevenindo esper
 - **Framework:** Fastify (Baixo overhead)
 - **Banco de Dados:** PostgreSQL 15
 - **ORM/Query:**
-  - **Prisma:** Definição de Schema & Migrations (Fonte da Verdade)
-  - **Kysely:** Construtor SQL Type-safe (Queries de Alta Performance)
+  - **Abordagem Híbrida:** Utilizei o **Prisma** para gerenciamento robusto de esquemas e o **Kysely** para consultas brutas de alto desempenho envolvendo cláusulas de bloqueio complexas (locks) não totalmente suportadas por ORMs tradicionais.
 - **Testes:** Jest (Testes de Integração & Concorrência)
 
 ---
@@ -107,7 +107,7 @@ npm install
 npm run db:migrate
 ```
 
-### 4. Rodar Testes (A "Prova Real")
+### 5. Rodar Testes (A "Prova Real")
 Isso executará testes de estresse de concorrência (Cenários de Race Condition & Deadlock).
 ```bash
 npm test
@@ -118,3 +118,6 @@ npm test
 ## 👨‍💻 Autor
 **Gérson Resplandes**
 Engenheiro Backend focado em Integridade de Dados & System Design.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gerson-resplandes-de-s%C3%A1-sousa-999bb33a3/)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:maiorgerson@gmail.com)

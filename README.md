@@ -1,4 +1,5 @@
 # Ledger Core
+![CI Status](https://github.com/GersonResplandes/ledger-core/actions/workflows/ci.yml/badge.svg)
 
 **[🇧🇷 Leia em Português](README_pt-br.md)**
 
@@ -78,8 +79,7 @@ Locks are acquired in a deterministic order (by ID), preventing circular waits.
 - **Framework:** Fastify (Low overhead)
 - **Database:** PostgreSQL 15
 - **ORM/Query:**
-  - **Prisma:** Schema Definition & Migrations (Source of Truth)
-  - **Kysely:** Type-safe SQL Builder (High-performance Queries)
+  - **Hybrid Approach:** Used **Prisma** for robust schema management and **Kysely** for high-performance raw queries involving complex locking clauses not fully supported by high-level ORMs.
 - **Testing:** Jest (Integration & Concurrency Tests)
 
 ---
@@ -107,7 +107,7 @@ npm install
 npm run db:migrate
 ```
 
-### 4. Run Tests (The "Proof")
+### 5. Run Tests (The "Proof")
 This will run concurrency stress tests (Race Condition & Deadlock scenarios).
 ```bash
 npm test
@@ -118,3 +118,6 @@ npm test
 ## 👨‍💻 Author
 **Gérson Resplandes**
 Backend Engineer focused on Data Integrity & System Design.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/gerson-resplandes-de-s%C3%A1-sousa-999bb33a3/)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:maiorgerson@gmail.com)
